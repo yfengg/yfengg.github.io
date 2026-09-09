@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yana Feng | Portfolio</title>
+  <meta name="description" content="Portfolio of Yana Feng, a Management Engineering student at the University of Waterloo.">
+
+  <style>
+    :root {
+      --navy: #111b2a;
+      --blue: #6f98bb;
+      --light-blue: #b8cfdf;
+      --paper: #f1f0eb;
+      --text: #17202b;
+      --muted: #68727d;
+      --line: #cfd2d1;
+      --yellow: #e0aa55;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--text);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      width: min(900px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    /* navigation */
+    nav {
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-content {
+      min-height: 58px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    nav strong,
+    nav a,
+    .button,
+    .label,
+    h1,
+    h2,
+    h3 {
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* hero */
+    header {
+      position: relative;
+      overflow: hidden;
+      background: var(--navy);
+      color: white;
+      padding: 75px 0 210px;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .label {
+      margin: 0 0 10px;
+      color: var(--light-blue);
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(52px, 9vw, 86px);
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+    }
+
+    .intro {
+      max-width: 520px;
+      margin: 22px 0 0;
+      color: #c4ced8;
+      font-size: 20px;
+    }
+
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 8px 13px;
+      border: 1px solid #668098;
+      color: white;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .button:hover {
+      background: var(--yellow);
+      border-color: var(--yellow);
+      color: var(--navy);
+    }
+
+    /* shared empty-state image slot: used by the hero portrait AND the art grid */
+    .img-slot {
+      position: relative;
+      border: 2px solid var(--blue);
+      background: #1a2939;
+      overflow: hidden;
+    }
+
+    .img-slot img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slot-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      color: #91a7ba;
+      text-align: center;
+      font: 12px/1.5 Arial, sans-serif;
+    }
+
+    .img-slot.loaded .slot-placeholder {
+      display: none;
+    }
+
+    .photo-box {
+      aspect-ratio: 4 / 5;
+    }
+
+    #city {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 180px;
+    }
+
+    .city-control {
+      position: absolute;
+      z-index: 3;
+      bottom: 14px;
+      left: 20px;
+    }
+
+    .city-control button {
+      border: 0;
+      border-bottom: 1px solid #65798d;
+      background: transparent;
+      color: #8fa1b2;
+      padding: 2px 0;
+      font: 12px Arial, sans-serif;
+      cursor: pointer;
+    }
+
+    /* sections */
+    section {
+      padding: 65px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 40px;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .section-content {
+      max-width: 650px;
+    }
+
+    .section-content > :first-child {
+      margin-top: 0;
+    }
+
+    .big-text {
+      font-size: 21px;
+      line-height: 1.5;
+    }
+
+    .skills {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .item {
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .item:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: baseline;
+    }
+
+    h3 {
+      margin: 0;
+      font-size: 17px;
+    }
+
+    .date {
+      color: var(--muted);
+      font: 13px Arial, sans-serif;
+      white-space: nowrap;
+    }
+
+    .place {
+      margin: 2px 0 8px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .item p:last-child {
+      margin-bottom: 0;
+    }
+
+    .project-link {
+      display: inline-block;
+      margin-top: 5px;
+      color: #476d8c;
+      font: 13px Arial, sans-serif;
+    }
+
+    /* art gallery grid */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .gallery-item {
+      aspect-ratio: 1;
+    }
+
+    .gallery-caption {
+      max-width: 650px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 24px;
+      margin-top: 18px;
+      font: 14px Arial, sans-serif;
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font: 12px Arial, sans-serif;
+    }
+
+    @media (max-width: 650px) {
+      .nav-links a:nth-child(2) {
+        display: none;
+      }
+
+      header {
+        padding-top: 55px;
+        padding-bottom: 190px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .photo-box {
+        width: 180px;
+      }
+
+      .section-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .item-top {
+        display: block;
+      }
+
+      .date {
+        display: block;
+        margin-top: 3px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav>
+    <div class="page nav-content">
+      <strong>Yana Feng</strong>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#art">Art</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="page hero">
+      <div>
+        <p class="label">Management Engineering · University of Waterloo</p>
+        <h1>Yana Feng</h1>
+        <p class="intro">I turn messy processes into things that work — in code, in spreadsheets, and on the page.</p>
+
+        <div class="hero-links">
+          <a class="button" href="#projects">View projects</a>
+          <a class="button" href="resume.pdf">Resume</a>
+          <a class="button" href="mailto:y357feng@uwaterloo.ca">Email me</a>
+        </div>
+      </div>
+
+      <div class="img-slot photo-box" id="photoBox">
+        <img class="slot-img" src="assets/profile.jpg" alt="Portrait of Yana Feng">
+        <div class="slot-placeholder">awaiting photo ;-;</div>
+      </div>
+    </div>
+
+    <canvas id="city"></canvas>
+    <div class="city-control">
+      <button id="redraw" type="button">draw another city</button>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="page section-grid">
+        <h2>About</h2>
+        <div class="section-content">
+          <p class="big-text">I'm a second-year Management Engineering student at Waterloo — a program focused on modelling systems, analyzing data, and improving how things run. I gravitate toward projects that take something messy (a spreadsheet, a research pile, a blank page) and make it usable. Or projects that take something vague (idea, rough draft, vision), and make it beautiful.</p>
+          <p>Recently I've been working on small data, automation and web projects while learning more about Unity and technical art.</p>
+          <p class="skills"><strong>Tools:</strong> Python, Excel/VBA, SQL, HTML/CSS/JavaScript, C#, Unity, Figma, Git, Blender and Photoshop.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="page section-grid">
+        <h2>Experience</h2>
+        <div class="section-content">
+          <article class="item">
+            <div class="item-top">
+              <h3>Growth Intern</h3>
+              <span class="date">Jul – Aug 2026</span>
+            </div>
+            <p class="place">Transformer Lab · Waterloo</p>
+            <p>Benchmarked eight AI companies' launch campaigns to help shape our own, built and prioritized a press outreach list, and wrote social copy — at an early-stage AI startup, working with a small team. Came out of it with an Excellent work-term evaluation.</p>
+          </article>
+
+          <article class="item">
+            <div class="item-top">
+              <h3>Server & Front of House</h3>
+              <span class="date">Jul 2026 – present</span>
+            </div>
+            <p class="place">Foodie Fruitie · Waterloo</p>
+            <p>Front-of-house and table service — seating, orders, payments — during busy, fast-paced shifts. Serve customers in English or Mandarin depending on the table, and deal with problems directly when they come up.</p>
+          </article>
+
+          <article class="item">
+            <div class="item-top">
+              <h3>Bookkeeping & Operations Assistant</h3>
+              <span class="date">2023 – Aug 2025</span>
+            </div>
+            <p class="place">Deeplake Trading · Remote</p>
+            <p>Reconciled receipts, invoices and bank records for an international trade business, then standardized expense tracking so tax preparation took less manual work each year.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="page section-grid">
+        <h2>Projects</h2>
+        <div class="section-content">
+          <article class="item">
+            <div class="item-top">
+              <h3>Random City Generator</h3>
+              <span class="date">Python · Matplotlib · 2026</span>
+            </div>
+            <p>A small procedural drawing experiment that creates a different skyline each time by randomizing building size, windows and rooftop towers. I later recreated the basic idea in JavaScript for this website.</p>
+            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+          </article>
+
+          <article class="item">
+            <div class="item-top">
+              <h3>Personal Finance Tracker & Advisor</h3>
+              <span class="date">Excel · VBA · 2025</span>
+            </div>
+            <p>An Excel workbook that logs income and expenses through a form, then reasons about them: flags any category running over 30% of monthly spend, gives net-worth-based savings advice, and rolls each month's balance into the next. A small goal tracker shows progress toward a savings target.</p>
+            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+          </article>
+
+          <article class="item">
+            <div class="item-top">
+              <h3>Methane Emissions Heatmap</h3>
+              <span class="date">Python · pandas · Seaborn · Hackathon 2026</span>
+            </div>
+            <p>Built at a hackathon: cleans a messy sensor CSV, groups readings into fixed-size spatial cubes, and renders the result as a heatmap so emission hotspots are visible at a glance.</p>
+            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+          </article>
+
+          <article class="item">
+            <div class="item-top">
+              <h3>Daily Activity & Task Log</h3>
+              <span class="date">Excel · VBA · 2025</span>
+            </div>
+            <p>A time-use log with a dropdown-driven entry form and input validation that rejects bad hours or dates before they're saved, plus a small tool that scores tasks by urgency, difficulty and importance.</p>
+            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+          </article>
+
+          <article class="item">
+            <div class="item-top">
+              <h3>Unity Editor Tooling</h3>
+              <span class="date">C# · Unity · 2026 – present</span>
+            </div>
+            <p>Custom Editor tools built against Unity's extension API to automate the repetitive parts of scene setup in a personal game project.</p>
+          </article>
+
+          <article class="item">
+            <div class="item-top">
+              <h3>This Website</h3>
+              <span class="date">HTML · CSS · JavaScript · 2026</span>
+            </div>
+            <p>My personal portfolio and an ongoing web project. I designed the layout around a dark city theme, made it responsive for smaller screens, and recreated my Python city generator with the HTML canvas.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="art">
+      <div class="page section-grid">
+        <h2>Art</h2>
+        <div class="section-content">
+          <p class="gallery-caption">Sketch practice and digital illustrations/designs.</p>
+          <div class="gallery-grid">
+            <div class="img-slot gallery-item">
+              <img class="slot-img" src="assets/gallery/art-1.jpg" alt="Sketch or artwork 1">
+              <div class="slot-placeholder">awaiting photo ;-;1</div>
+            </div>
+            <div class="img-slot gallery-item">
+              <img class="slot-img" src="assets/gallery/art-2.jpg" alt="Sketch or artwork 2">
+              <div class="slot-placeholder">awaiting photo ;-;2</div>
+            </div>
+            <div class="img-slot gallery-item">
+              <img class="slot-img" src="assets/gallery/art-3.jpg" alt="Sketch or artwork 3">
+              <div class="slot-placeholder">awaiting photo ;-;3</div>
+            </div>
+            <div class="img-slot gallery-item">
+              <img class="slot-img" src="assets/gallery/art-4.jpg" alt="Sketch or artwork 4">
+              <div class="slot-placeholder">awaiting photo ;-;4</div>
+            </div>
+            <div class="img-slot gallery-item">
+              <img class="slot-img" src="assets/gallery/art-5.jpg" alt="Sketch or artwork 5">
+              <div class="slot-placeholder">awaiting photo ;-;5</div>
+            </div>
+            <div class="img-slot gallery-item">
+              <img class="slot-img" src="assets/gallery/art-6.jpg" alt="Sketch or artwork 6">
+              <div class="slot-placeholder">awaiting photo ;-;6</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="page section-grid">
+        <h2>Contact</h2>
+        <div class="section-content">
+          <p class="big-text">I'm looking for a Winter 2027 co-op in product, analysis, research or technical / visual work.</p>
+          <div class="contact-links">
+            <a href="mailto:y357feng@uwaterloo.ca">y357feng@uwaterloo.ca</a>
+            <a href="https://github.com/yfengg">GitHub</a>
+            <a href="resume.pdf">Resume PDF</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page">Made with HTML, CSS and JavaScript.</div>
+  </footer>
+
+  <script>
+    const canvas = document.getElementById("city");
+    const ctx = canvas.getContext("2d");
+
+    function randomNumber(min, max) {
+      return Math.random() * (max - min) + min;
+    }
+
+    function drawBuilding(x, ground, scale) {
+      const width = randomNumber(30, 65) * scale;
+      const height = randomNumber(55, 145) * scale;
+      const y = ground - height;
+
+      ctx.fillStyle = "#0c1420";
+      ctx.fillRect(x, y, width, height);
+
+      for (let windowY = y + 12 * scale; windowY < ground - 8 * scale; windowY += 16 * scale) {
+        if (Math.random() < 0.65) {
+          ctx.fillStyle = Math.random() < 0.2 ? "#f1cf8b" : "#dba14c";
+          ctx.fillRect(x + width * 0.2, windowY, width * 0.18, 5 * scale);
+        }
+      }
+
+      if (Math.random() < 0.5) {
+        const towerHeight = randomNumber(12, 35) * scale;
+        ctx.fillStyle = "#0a1019";
+        ctx.fillRect(x + width / 3, y - towerHeight, width / 3, towerHeight);
+      }
+
+      return width;
+    }
+
+    function drawCity() {
+      const pixelRatio = window.devicePixelRatio || 1;
+      const width = canvas.clientWidth;
+      const height = canvas.clientHeight;
+
+      canvas.width = width * pixelRatio;
+      canvas.height = height * pixelRatio;
+      ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      ctx.clearRect(0, 0, width, height);
+
+      const ground = height;
+      const scale = Math.max(0.75, Math.min(1.25, width / 900));
+      let x = -10;
+
+      while (x < width) {
+        const buildingWidth = drawBuilding(x, ground, scale);
+        x += buildingWidth + randomNumber(3, 12) * scale;
+      }
+    }
+
+    document.getElementById("redraw").addEventListener("click", drawCity);
+    window.addEventListener("resize", drawCity);
+
+    document.querySelectorAll(".img-slot img").forEach(function (img) {
+      img.addEventListener("load", function () {
+        img.closest(".img-slot").classList.add("loaded");
+      });
+      img.addEventListener("error", function () {
+        img.style.display = "none";
+      });
+    });
+
+    drawCity();
+  </script>
+</body>
+</html>
