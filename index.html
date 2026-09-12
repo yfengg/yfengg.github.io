@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
   <title>Yana Feng | Portfolio</title>
   <meta name="description" content="Portfolio of Yana Feng, a Management Engineering student at the University of Waterloo.">
 
@@ -284,7 +285,45 @@
       color: #476d8c;
       font: 13px Arial, sans-serif;
     }
+    /* experience scroller */
+    .exp-scroller {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      border-top: 1px solid var(--line);
+      padding: 22px 0 18px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--line) transparent;
+    }
 
+    .exp-card {
+      flex: 0 0 auto;
+      scroll-snap-align: start;
+      min-width: 200px;
+      padding: 0 24px;
+      border-left: 1px solid var(--line);
+    }
+
+    .exp-card:first-child {
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .exp-meta {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font: 13px Arial, sans-serif;
+    }
+
+    .scroll-hint {
+      display: inline-block;
+      margin: 0;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font: 12px Arial, sans-serif;
+    }
+    
     /* art gallery grid */
     .gallery-grid {
       display: grid;
@@ -316,10 +355,17 @@
     }
 
     @media (max-width: 650px) {
-      .nav-links a:nth-child(2) {
-        display: none;
+      .nav-content {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        padding: 12px 0;
       }
 
+      .nav-links {
+        flex-wrap: wrap;
+        gap: 6px 14px;
+      }
+  
       header {
         padding-top: 55px;
         padding-bottom: 190px;
@@ -374,11 +420,10 @@
       <div>
         <p class="label">Management Engineering · University of Waterloo</p>
         <h1>Yana Feng</h1>
-        <p class="intro">I turn messy processes into things that work — in code, in spreadsheets, and on the page.</p>
+        <p class="intro">I'm interested in product, data, visual design, and the small systems that make things easier to use.</p>
 
         <div class="hero-links">
           <a class="button" href="#projects">View projects</a>
-          <a class="button" href="resume.pdf">Resume</a>
           <a class="button" href="mailto:y357feng@uwaterloo.ca">Email me</a>
         </div>
       </div>
@@ -411,36 +456,27 @@
       <div class="page section-grid">
         <h2>Experience</h2>
         <div class="section-content">
-          <article class="item">
-            <div class="item-top">
+          <div class="exp-scroller">
+            <article class="exp-card">
               <h3>Growth Intern</h3>
-              <span class="date">Jul – Aug 2026</span>
-            </div>
-            <p class="place">Transformer Lab · Waterloo</p>
-            <p>Benchmarked eight AI companies' launch campaigns to help shape our own, built and prioritized a press outreach list, and wrote social copy — at an early-stage AI startup, working with a small team. Came out of it with an Excellent work-term evaluation.</p>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <h3>Server & Front of House</h3>
-              <span class="date">Jul 2026 – present</span>
-            </div>
-            <p class="place">Foodie Fruitie · Waterloo</p>
-            <p>Front-of-house and table service — seating, orders, payments — during busy, fast-paced shifts. Serve customers in English or Mandarin depending on the table, and deal with problems directly when they come up.</p>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <h3>Bookkeeping & Operations Assistant</h3>
-              <span class="date">2023 – Aug 2025</span>
-            </div>
-            <p class="place">Deeplake Trading · Remote</p>
-            <p>Reconciled receipts, invoices and bank records for an international trade business, then standardized expense tracking so tax preparation took less manual work each year.</p>
-          </article>
+              <p class="exp-meta">Transformer Lab · 2026</p>
+            </article>
+ 
+            <article class="exp-card">
+              <h3>Server &amp; Front of House</h3>
+              <p class="exp-meta">Foodie Fruitie · 2026 </p>
+            </article>
+ 
+            <article class="exp-card">
+              <h3>Bookkeeping &amp; Operations</h3>
+              <p class="exp-meta">Deeplake Trading · 2023 – 2025</p>
+            </article>
+          </div>
+          <p class="scroll-hint">swipe / scroll →</p>
         </div>
       </div>
     </section>
-
+    
     <section id="projects">
       <div class="page section-grid">
         <h2>Projects</h2>
@@ -456,7 +492,7 @@
 
           <article class="item">
             <div class="item-top">
-              <h3>Personal Finance Tracker & Advisor</h3>
+              <h3>Personal Finance Tracker &amp; Advisor</h3>
               <span class="date">Excel · VBA · 2025</span>
             </div>
             <p>An Excel workbook that logs income and expenses through a form, then reasons about them: flags any category running over 30% of monthly spend, gives net-worth-based savings advice, and rolls each month's balance into the next. A small goal tracker shows progress toward a savings target.</p>
@@ -486,15 +522,7 @@
               <h3>Unity Editor Tooling</h3>
               <span class="date">C# · Unity · 2026 – present</span>
             </div>
-            <p>Custom Editor tools built against Unity's extension API to automate the repetitive parts of scene setup in a personal game project.</p>
-          </article>
-
-          <article class="item">
-            <div class="item-top">
-              <h3>This Website</h3>
-              <span class="date">HTML · CSS · JavaScript · 2026</span>
-            </div>
-            <p>My personal portfolio and an ongoing web project. I designed the layout around a dark city theme, made it responsive for smaller screens, and recreated my Python city generator with the HTML canvas.</p>
+            <p>In progress - Custom Editor tools built against Unity's extension API to automate the repetitive parts of scene setup in a personal game project.</p>
           </article>
         </div>
       </div>
@@ -543,7 +571,6 @@
           <div class="contact-links">
             <a href="mailto:y357feng@uwaterloo.ca">y357feng@uwaterloo.ca</a>
             <a href="https://github.com/yfengg">GitHub</a>
-            <a href="resume.pdf">Resume PDF</a>
           </div>
         </div>
       </div>
