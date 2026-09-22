@@ -285,61 +285,40 @@
       color: #476d8c;
       font: 13px Arial, sans-serif;
     }
-    /* experience scroller */
-    .exp-scroller {
+
+    /* art horizontal scroller */
+
+    .art-scroller {
       display: flex;
+      gap: 16px;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      border-top: 1px solid var(--line);
-      padding: 22px 0 18px;
+      overflow-y: hidden;
+      margin-top: 22px;
+      padding-bottom: 16px;
+
+      scroll-snap-type: x proximity;
+
       scrollbar-width: thin;
       scrollbar-color: var(--line) transparent;
     }
 
-    .exp-card {
-      flex: 0 0 auto;
-      scroll-snap-align: start;
-      min-width: 200px;
-      padding: 0 24px;
-      border-left: 1px solid var(--line);
-    }
-
-    .exp-card:first-child {
-      padding-left: 0;
-      border-left: 0;
-    }
-
-    .exp-meta {
-      margin: 4px 0 0;
-      color: var(--muted);
-      font: 13px Arial, sans-serif;
-    }
-
-    .scroll-hint {
-      display: inline-block;
-      margin: 0;
-      padding-bottom: 2px;
-      border-bottom: 1px solid var(--line);
-      color: var(--muted);
-      font: 12px Arial, sans-serif;
-    }
-    
-    /* art gallery grid */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 22px;
-    }
-
     .gallery-item {
-      aspect-ratio: 1;
+      flex: 0 0 auto;
+      height: 340px;
+      scroll-snap-align: start;
+    }
+
+    .gallery-item img {
+      width: auto;
+      height: 100%;
+      max-width: none;
+      object-fit: contain;
     }
 
     .gallery-caption {
       max-width: 650px;
     }
-
+    
     .contact-links {
       display: flex;
       flex-wrap: wrap;
@@ -407,7 +386,6 @@
       <strong>Yana Feng</strong>
       <div class="nav-links">
         <a href="#about">About</a>
-        <a href="#experience">Experience</a>
         <a href="#projects">Projects</a>
         <a href="#art">Art</a>
         <a href="#contact">Contact</a>
@@ -451,43 +429,40 @@
         </div>
       </div>
     </section>
-
-    <section id="experience">
-      <div class="page section-grid">
-        <h2>Experience</h2>
-        <div class="section-content">
-          <div class="exp-scroller">
-            <article class="exp-card">
-              <h3>Growth Intern</h3>
-              <p class="exp-meta">Transformer Lab · 2026</p>
-            </article>
- 
-            <article class="exp-card">
-              <h3>Server &amp; Front of House</h3>
-              <p class="exp-meta">Foodie Fruitie · 2026 </p>
-            </article>
- 
-            <article class="exp-card">
-              <h3>Bookkeeping &amp; Operations</h3>
-              <p class="exp-meta">Deeplake Trading · 2023 – 2025</p>
-            </article>
-          </div>
-          <p class="scroll-hint">swipe / scroll →</p>
-        </div>
-      </div>
-    </section>
     
     <section id="projects">
       <div class="page section-grid">
         <h2>Projects</h2>
+        
         <div class="section-content">
+        
+        <article class="item">
+          <div class="item-top">
+            <h3>Scanlation Tool</h3>
+            <span class="date">Python · 2026 – present</span>
+          </div>
+
+          <p>
+            In development. A tool for streamlining comic and manga translation
+            workflows, with a focus on preserving context, culturally appropriate
+            translation, text placement, and the visual structure of the original page.
+          </p>
+
+          <a
+            class="project-link"
+            href="https://github.com/yfengg/scanlate"
+          >
+            GitHub ↗
+          </a>
+        </article>
+        
           <article class="item">
             <div class="item-top">
               <h3>Random City Generator</h3>
               <span class="date">Python · Matplotlib · 2026</span>
             </div>
             <p>A small procedural drawing experiment that creates a different skyline each time by randomizing building size, windows and rooftop towers. I later recreated the basic idea in JavaScript for this website.</p>
-            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/yfengg/procedural-architecture">GitHub ↗</a>
           </article>
 
           <article class="item">
@@ -496,7 +471,7 @@
               <span class="date">Excel · VBA · 2025</span>
             </div>
             <p>An Excel workbook that logs income and expenses through a form, then reasons about them: flags any category running over 30% of monthly spend, gives net-worth-based savings advice, and rolls each month's balance into the next. A small goal tracker shows progress toward a savings target.</p>
-            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/yfengg/financialtracker">GitHub ↗</a>
           </article>
 
           <article class="item">
@@ -505,7 +480,7 @@
               <span class="date">Python · pandas · Seaborn · Hackathon 2026</span>
             </div>
             <p>Built at a hackathon: cleans a messy sensor CSV, groups readings into fixed-size spatial cubes, and renders the result as a heatmap so emission hotspots are visible at a glance.</p>
-            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/yfengg/for-heatmap2">GitHub ↗</a>
           </article>
 
           <article class="item">
@@ -514,7 +489,7 @@
               <span class="date">Excel · VBA · 2025</span>
             </div>
             <p>A time-use log with a dropdown-driven entry form and input validation that rejects bad hours or dates before they're saved, plus a small tool that scores tasks by urgency, difficulty and importance.</p>
-            <a class="project-link" href="https://github.com/yfengg">GitHub ↗</a>
+            <a class="project-link" href="https://github.com/yfengg/task-manager">GitHub ↗</a>
           </article>
 
           <article class="item">
@@ -533,32 +508,67 @@
         <h2>Art</h2>
         <div class="section-content">
           <p class="gallery-caption">Sketch practice and digital illustrations/designs.</p>
-          <div class="gallery-grid">
+          <div class="art-scroller">
+
             <div class="img-slot gallery-item">
-              <img class="slot-img" src="assets/gallery/art-1.jpg" alt="Sketch or artwork 1">
+              <img
+                class="slot-img"
+                src="assets/gallery/art-1.jpg"
+                alt="Digital character illustration"
+              >
               <div class="slot-placeholder">awaiting photo ;-;1</div>
             </div>
+
+            
             <div class="img-slot gallery-item">
-              <img class="slot-img" src="assets/gallery/art-2.jpg" alt="Sketch or artwork 2">
+              <img
+                class="slot-img"
+                src="assets/gallery/art-2.jpg"
+                alt="Character portrait sketch"
+              >
               <div class="slot-placeholder">awaiting photo ;-;2</div>
             </div>
+
             <div class="img-slot gallery-item">
-              <img class="slot-img" src="assets/gallery/art-3.jpg" alt="Sketch or artwork 3">
+              <img
+                class="slot-img"
+                src="assets/gallery/art-3.jpg"
+                alt="Digital character illustration"
+              >
               <div class="slot-placeholder">awaiting photo ;-;3</div>
             </div>
+
+
             <div class="img-slot gallery-item">
-              <img class="slot-img" src="assets/gallery/art-4.jpg" alt="Sketch or artwork 4">
+              <img
+                class="slot-img"
+                src="assets/gallery/art-4.jpg"
+                alt="Character concept sketch"
+               >
               <div class="slot-placeholder">awaiting photo ;-;4</div>
             </div>
+
             <div class="img-slot gallery-item">
-              <img class="slot-img" src="assets/gallery/art-5.jpg" alt="Sketch or artwork 5">
+              <img
+                class="slot-img"
+                src="assets/gallery/art-5.jpg"
+                alt="Traditional drawing study"
+              >
               <div class="slot-placeholder">awaiting photo ;-;5</div>
             </div>
+
             <div class="img-slot gallery-item">
-              <img class="slot-img" src="assets/gallery/art-6.jpg" alt="Sketch or artwork 6">
+              <img
+                class="slot-img"
+                src="assets/gallery/art-6.jpg"
+                alt="Character sketches"
+              >
               <div class="slot-placeholder">awaiting photo ;-;6</div>
             </div>
+
           </div>
+
+          <p class="scroll-hint">swipe / scroll →</p>
         </div>
       </div>
     </section>
