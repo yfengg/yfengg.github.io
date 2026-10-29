@@ -1,0 +1,72 @@
+{
+  "name": "Yana Feng",
+  "nameZh": "馮",
+
+  "about": {
+    "photo": "assets/profile.jpg",
+    "photoCaption": "me",
+    "paragraphs": [
+      "Hi, I'm Yana.",
+      "I study Management Engineering at the University of Waterloo. I build small tools, make messy data easier to read, and paint.",
+      "English, 中文, and some 日本語."
+    ]
+  },
+
+  "contact": {
+    "role": ["Management Engineering", "University of Waterloo"],
+    "email": "y357feng@uwaterloo.ca",
+    "github": "https://github.com/yfengg"
+  },
+
+  "projects": [
+    {
+      "id": "SCANLATE",
+      "title": "Scanlation Tool",
+      "meta": "2026 · Python · glossary + page memory",
+      "summary": "A workbench for translating comics without losing context, tone, or the look of the original page.",
+      "image": null,
+      "links": { "site": null, "source": "https://github.com/yfengg/scanlate", "more": null }
+    },
+    {
+      "id": "HEATMAP",
+      "title": "Methane Emissions Heatmap",
+      "meta": "Hackathon 2026 · Python · pandas · Seaborn",
+      "summary": "Cleans a messy sensor CSV, groups readings into fixed-size spatial cubes, and shows where emissions concentrate.",
+      "image": null,
+      "links": { "site": null, "source": "https://github.com/yfengg/for-heatmap2", "more": null }
+    },
+    {
+      "id": "CITYGEN",
+      "title": "Random City Generator",
+      "meta": "2026 · Python · Matplotlib · JavaScript",
+      "summary": "Procedural skylines. The street outside the window is built from it; click the glass for a new one.",
+      "image": null,
+      "links": { "site": null, "source": "https://github.com/yfengg/procedural-architecture", "more": null }
+    },
+    {
+      "id": "FINANCE",
+      "title": "Finance Tracker & Advisor",
+      "meta": "2025 · Excel · VBA",
+      "summary": "Logs spending through a form, flags any category over 30% of the month, and rolls balances forward.",
+      "image": null,
+      "links": { "site": null, "source": "https://github.com/yfengg/financialtracker", "more": null }
+    }
+  ],
+
+  "art": [
+    { "file": "assets/gallery/art-1.jpeg", "title": "Lantern", "medium": "Digital painting · Procreate", "note": "" },
+    { "file": "assets/gallery/art-2.jpeg", "title": "Hooded figure", "medium": "Digital sketch", "note": "" },
+    { "file": "assets/gallery/art-3.jpeg", "title": "Maid", "medium": "Character sketch · Procreate", "note": "" },
+    { "file": "assets/gallery/art-4.jpeg", "title": "Ram skull", "medium": "Concept sketch", "note": "" },
+    { "file": "assets/gallery/art-5.jpeg", "title": "Vessel", "medium": "Graphite on paper", "note": "" },
+    { "file": "assets/gallery/art-6.jpeg", "title": "Drapery study", "medium": "Digital value study", "note": "" }
+  ],
+
+  "objects": {
+    "Computer":   { "view": "projects", "zh": "電腦",   "en": "PROJECTS" },
+    "Sketchbook": { "view": "art",      "zh": "畫簿",   "en": "ART" },
+    "Telephone":  { "view": "contact",  "zh": "電話",   "en": "CONTACT" },
+    "Corkboard":  { "view": "about",    "zh": "告示板", "en": "ABOUT" },
+    "Window":     { "view": "city",     "zh": "窗外",   "en": "RANDOM CITY" }
+  }
+}
